@@ -41,7 +41,7 @@ class PostApi(Resource):
         file = request.files['image']
         image = file.read()
         reg=Post(
-        user_id=1,
+        user_id=user_id,
         image=image,
         content=content,
         title=title
@@ -61,7 +61,6 @@ class Get_post(Resource):
             s1=str(image)
             output = re.findall(r"'(.*?)'", s1)[0]
             image_str="data:image;base64,"+output
-            
             user_data=User.query.filter_by(user_id=posts[len(posts)-1-i].user_id).first()
             if(user_data.user_img):
                 image =  base64.b64encode(user_data.user_img)
@@ -76,7 +75,7 @@ class Get_post(Resource):
                 like=True
             else:
                 like=False
-            image_responses.append({"username":user_data.user_name, 'user_img':user_image_str, 'image':image_str  , 'title': posts[len(posts)-1-i].title, 'content': posts[len(posts)-1-i].content ,'post_id': p_id ,'like':like})
+            image_responses.append({"user_id":user_data.user_id,"username":user_data.user_name, 'user_img':user_image_str, 'image':image_str  , 'title': posts[len(posts)-1-i].title, 'content': posts[len(posts)-1-i].content ,'post_id': p_id ,'like':like})
         return image_responses
 
 class Comment_Api(Resource):

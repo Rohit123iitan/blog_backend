@@ -29,5 +29,5 @@ class Search_user(Resource):
         users = User.query.filter(User.user_name.like(f'%{user_name}%')).all()
         response=[]
         for user in users:
-            response.append({"username":user.user_name})
+            response.append({"username":user.user_name,"user_id":user.user_id})
         return response
