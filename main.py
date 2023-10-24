@@ -5,7 +5,6 @@ from application import config
 from application.config import LocalDevelopmentConfig
 from application.database import db
 from flask_cors import CORS
-# from application.models import User
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 app = None
 api = None
@@ -24,7 +23,7 @@ def create_app():
     app.app_context().push()
     CORS(app)
     return app, api
-
+  
 app,api = create_app()
 from application.api.Registration_api import Res_Api
 api.add_resource(Res_Api, "/api/registration")
@@ -48,8 +47,10 @@ from application.api.User_api import Search_user
 api.add_resource(Search_user,"/api/search")
 from application.api.Follower_api import FollowerAPI
 api.add_resource(FollowerAPI,"/api/follow")
+from application.api.Follower_api import Unfollow
+api.add_resource(Unfollow,"/api/unfollow")
 from application.api.Follower_api import Get_follow
-api.add_resource(Get_follow,"/api/get_follower")
+api.add_resource(Get_follow,"/api/get_followed")
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0',port=8080)
