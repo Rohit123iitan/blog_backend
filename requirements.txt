@@ -1,0 +1,17 @@
+flask
+kombu
+flask_sqlalchemy
+flask_cors
+celery[redis]
+flask-security
+flask_jwt_extended
+sqlalchemy
+email_validator
+bcrypt
+flask_restful
+redis
+flask-sse 
+gunicorn
+razorpay
+gevent
+Flask-Caching
